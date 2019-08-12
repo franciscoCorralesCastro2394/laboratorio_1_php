@@ -15,7 +15,7 @@ class Upload extends CI_Controller {
 
         public function do_upload()
         {
-                $config['upload_path']          = '../lab1_mvc_oauth/application/views/uploads/';
+                $config['upload_path']          = '../lab1_mvc_oauth/uploads/';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['max_size']             = 2048;
                 $config['max_width']            = 1080;

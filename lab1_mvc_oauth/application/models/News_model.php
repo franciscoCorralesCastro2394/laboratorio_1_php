@@ -28,7 +28,7 @@ class News_model extends CI_Model {
     }
 
 
-      public function edit_news($id = null)
+      public function edit_news($id = null,$img = null)
     {
         $this->load->helper('url');
  
@@ -38,7 +38,8 @@ class News_model extends CI_Model {
          $data = array(
             'title' => $this->input->post('title'),
             'slug' => $slug,
-            'text' => $this->input->post('text')
+            'text' => $this->input->post('text'),
+            'img' => $img
         );
 
           $where_ = array('id' => $id);
@@ -49,7 +50,7 @@ class News_model extends CI_Model {
     }
 
 
-    public function set_news($id = null)
+    public function set_news($img = null)
     {
         $this->load->helper('url');
  
@@ -59,7 +60,7 @@ class News_model extends CI_Model {
             'title' => $this->input->post('title'),
             'slug' => $slug,
             'text' => $this->input->post('text'),
-            'img' => $this->input->post('img')
+            'img' => $img
         );
         
             return $this->db->insert('news', $data);

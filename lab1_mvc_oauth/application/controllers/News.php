@@ -12,7 +12,7 @@ class News extends CI_Controller {
     {
         $data['news'] = $this->news_model->get_news();
         $data['title'] = 'Noticias';
-        $data['upload_data']['full_path'] = null;
+        $data['upload_data']['file_name'] = null;
  
         $this->load->view('templates/header', $data);
         $this->load->view('news/index', $data);
@@ -41,21 +41,24 @@ class News extends CI_Controller {
         $this->load->library('form_validation');
  
         $data['title'] = 'Create a news item';
-        $data['upload_data']['full_path'] = "";
  
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
- 
+        
+        $data['imgs'] = $this->fileUpLoad();
+      
+
         if ($this->form_validation->run() === FALSE)
         {
-            $this->load->view('templates/header', $data);
+            $error = $data;
+            $this->load->view('templates/header',$data);
             $this->load->view('news/create');
             $this->load->view('templates/footer');
  
         }
         else
         {
-            $this->news_model->set_news();
+            $this->news_model->set_news($data['imgs']['file_name']);
             $this->load->view('templates/header', $data);
             $this->load->view('news/success');
             $this->load->view('templates/footer');
@@ -78,6 +81,8 @@ class News extends CI_Controller {
         
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('text', 'Text', 'required');
+        $data['imgs'] = $this->fileUpLoad();
+        
  
         if ($this->form_validation->run() === FALSE)
         {
@@ -88,7 +93,8 @@ class News extends CI_Controller {
         }
         else
         {
-            $this->news_model->edit_news($id);
+            echo $data['imgs']['file_name'];
+            $this->news_model->edit_news($id,$data['imgs']['file_name']);
             $this->load->view('news/success');
             redirect( base_url() . 'index.php/news');
         }
@@ -106,4 +112,24 @@ class News extends CI_Controller {
         $this->news_model->delete_news($id);        
         $this->index();     
     }
+
+    function fileUpLoad() {
+
+        $imgFile = 'img';
+        $config['upload_path'] = "../lab1_mvc_oauth/uploads/";
+        $config['allowed_types'] = "jpg|png";
+        $config['max_size'] = "100000";
+        $config['max_width'] = "2000";
+        $config['max_height'] = "2000";
+
+        $this->load->library('upload', $config);
+        
+        if (!$this->upload->do_upload($imgFile)) {
+            $data['uploadError'] = $this->upload->display_errors();
+            return $data['uploadError'];
+        }
+
+        return $this->upload->data();
+    }
+
 }

@@ -5,30 +5,22 @@
 <h2><?php echo $title; ?></h2>
  
 <?php echo validation_errors(); ?>
-
-<?php echo form_open_multipart('Upload/do_upload');?>
-
-              <input type="file" class="form-control" name="userfile" size="20" />
-              <br>
-               <input type="submit" class="form-control" value="upload" />
-
-               </form>
-
-          <br>     
+  
  
-<?php echo form_open('news/edit/'.$news_item['id']); ?>    
+<?php echo form_open('news/edit/'.$news_item['id'],['enctype'=>'multipart/form-data']); ?>    
     <table>
+
+          <tr>
+        <div class="form-group">
+        <label for="img">Imagen</label>
+        <input type="file" name="img">
+        </div>
+      </tr>
+
         <tr>
             <td>
                 <label for="title">Title</label>    
                 <input class="form-control" type="input" name="title" size="50" value="<?php echo $news_item['title']?>"/>
-            </td>
-        </tr>
-         <tr>
-          
-            <td>
-                <label for="img">Imagen</label>    
-                <input class="form-control" type="input" name="img" size="50" value="<?php echo $news_item['img']?>"/>
             </td>
         </tr>
         <tr>

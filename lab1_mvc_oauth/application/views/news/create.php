@@ -10,18 +10,16 @@
 <?php echo validation_errors(); ?>
  
 
-<?php echo form_open_multipart('Upload/do_upload');?>
-
-              <input type="file" class="form-control" name="userfile" size="20" />
-              <br>
-               <input type="submit" class="form-control" value="upload" />
-
-               </form>
-   
-    <br> 
-
-<?php echo form_open('news/create'); ?>    
+<?php echo form_open('news/create',['enctype'=>'multipart/form-data']); ?>    
     <table>
+
+
+      <tr>
+        <div class="form-group">
+        <label for="img">Imagen</label>
+        <input type="file" name="img">
+        </div>
+      </tr>
         <tr>
           
             <td>
@@ -30,12 +28,6 @@
             </td>
            
         </tr>
-
-        <tr>
-               <td>
-                <label for="img">Imagen</label>    
-        <input class="form-control" type="input" name="img" size="50" value="<?php echo $upload_data['full_path']?>" />
-            </td>
         </tr>
         <tr>
             <td>

@@ -1,15 +1,15 @@
 <div class="container">
 	
-
+<br>
 <?php
 echo '<h2>'.$news_item['title'].'</h2>';
 
-$var  = '..'.substr($news_item['img'], 30);
+$var  = '../views/uploads/'.$news_item['img'];
 
 
 ?>
 
-<img src="<?php echo $var?>" class="img-fluid" alt="">
+<img src="<?php echo base_url().'uploads/'.$news_item['img']; ?>" class="img-fluid" alt="">
 
 <?php
 
