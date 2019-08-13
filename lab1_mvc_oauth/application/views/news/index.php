@@ -1,7 +1,7 @@
 
 <div class="container">
     <br>
-<h2><?php echo $title; ?></h2>
+<h2><?php  ?></h2>
     <table class="table table-hover">
         <tr>
             <td><strong>titulo</strong></td> 

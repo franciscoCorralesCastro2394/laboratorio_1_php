@@ -19,7 +19,11 @@
       <li class="nav-item">
          <a class="nav-link" href="<?php echo site_url('news/create'); ?>">Agregar</a>
       </li>
+       <li class="nav-item">
+         <a class="nav-link" href=""><?php echo $this->session->has_userdata('displayName'); ?></a>
+      </li>
     </ul>
   </div>
+   <a class="btn btn-outline-success my-2 my-sm-0"> Cerra Sesiòn</a>
 </nav>
 		
