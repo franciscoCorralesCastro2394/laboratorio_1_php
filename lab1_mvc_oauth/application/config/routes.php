@@ -56,6 +56,7 @@ $route['news/view/(:any)'] = 'news/view/$1';
 $route['news/(:any)'] = 'news/view/$1';
 $route['Upload'] = 'upload';
 $route['loginSeguro/result'] = 'loginSeguro/result';
+$route['loginSeguro/resultFB'] = 'loginSeguro/resultFB';
 $route['default_controller'] = 'loginSeguro/index';
 
 

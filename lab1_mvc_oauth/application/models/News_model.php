@@ -18,17 +18,13 @@ class News_model extends CI_Model {
         return $query->row_array();
     }
    
-    
-
-    
     public function delete_news($id)
     {
         $this->db->where('id', $id);
         return $this->db->delete('news');
     }
 
-
-      public function edit_news($id = null,$img = null)
+    public function edit_news($id = null,$img = null)
     {
         $this->load->helper('url');
  
@@ -48,7 +44,6 @@ class News_model extends CI_Model {
             return $this->db->update('news', $data , $where_);
         
     }
-
 
     public function set_news($img = null)
     {
